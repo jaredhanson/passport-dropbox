@@ -1,7 +1,7 @@
 # Passport-Dropbox
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
-with Dropbox using the OAuth 1.0a API.
+with Dropbox using the OAuth 1.0 API.
 
 ## Credits
 
