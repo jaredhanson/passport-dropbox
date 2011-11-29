@@ -1,0 +1,16 @@
+{
+  "name": "passport-dropbox",
+  "version": "0.1.0",
+  "description": "Dropbox authentication strategy for Passport.",
+  "author": "Jared Hanson <jaredhanson@gmail.com> (http://www.jaredhanson.net/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jaredhanson/passport-dropbox.git"
+  },
+  "main": "./lib/passport-dropbox",
+  "dependencies": {
+    "passport-oauth": ">= 0.1.0"
+  },
+  "engines": { "node": ">= 0.4.0" },
+  "keywords": ["passport", "dropbox", "auth", "authn", "authentication", "identity"]
+}
