@@ -1,7 +1,7 @@
 # Passport-Dropbox
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
-with Dropbox using the OAuth 1.0 API.
+with [Dropbox](http://www.dropbox.com/) using the OAuth 1.0 API.
 
 ## Installation
 
@@ -50,9 +50,16 @@ application:
         res.redirect('/');
       });
 
-#### Examples
+## Examples
 
 For a complete, working example, refer to the [login example](https://github.com/jaredhanson/passport-dropbox/tree/master/examples/login).
+
+## Tests
+
+    $ npm install --dev
+    $ make test
+
+[![Build Status](https://secure.travis-ci.org/jaredhanson/passport-dropbox.png)](http://travis-ci.org/jaredhanson/passport-dropbox)
 
 ## Credits
 

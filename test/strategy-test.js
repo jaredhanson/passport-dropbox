@@ -70,6 +70,12 @@ vows.describe('DropboxStrategy').addBatch({
         assert.equal(profile.displayName, 'John P. User');
         assert.equal(profile.emails[0].value, 'john@example.com');
       },
+      'should set raw property' : function(err, profile) {
+        assert.isString(profile._raw);
+      },
+      'should set json property' : function(err, profile) {
+        assert.isObject(profile._json);
+      },
     },
   },
   
