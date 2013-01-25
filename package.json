@@ -1,6 +1,6 @@
 {
   "name": "passport-dropbox",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Dropbox authentication strategy for Passport.",
   "keywords": ["passport", "dropbox", "auth", "authn", "authentication", "identity"],
   "repository": {
