@@ -9,8 +9,8 @@ vows.describe('DropboxStrategy').addBatch({
   'strategy': {
     topic: function() {
       return new DropboxStrategy({
-        consumerKey: 'ABC123',
-        consumerSecret: 'secret'
+        clientID: 'ABC123',
+        clientSecret: 'secret'
       },
       function() {});
     },
@@ -23,13 +23,13 @@ vows.describe('DropboxStrategy').addBatch({
   'strategy when loading user profile': {
     topic: function() {
       var strategy = new DropboxStrategy({
-        consumerKey: 'ABC123',
-        consumerSecret: 'secret'
+        clientID: 'ABC123',
+        clientSecret: 'secret'
       },
       function() {});
       
       // mock
-      strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      strategy._oauth2.get = function(url, accessToekn, callback) {
         var body = '{ \
             "referral_link": "https://www.dropbox.com/referrals/r1a2n3d4m5s6t7", \
             "display_name": "John P. User", \
@@ -82,13 +82,13 @@ vows.describe('DropboxStrategy').addBatch({
   'strategy when loading user profile and encountering an error': {
     topic: function() {
       var strategy = new DropboxStrategy({
-        consumerKey: 'ABC123',
-        consumerSecret: 'secret'
+        clientID: 'ABC123',
+        clientSecret: 'secret'
       },
       function() {});
       
       // mock
-      strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      strategy._oauth2.get = function(url, accessToken, callback) {
         callback(new Error('something went wrong'));
       }
       
