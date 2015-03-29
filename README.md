@@ -20,14 +20,14 @@ unobtrusively integrated into any application or framework that supports
 The Dropbox authentication strategy authenticates users using a Dropbox account
 and OAuth tokens.  The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user, as well as `options`
-specifying a consumer key, consumer secret, and callback URL.
+specifying a client id, client secret, and callback URL.
 
     passport.use(new DropboxStrategy({
-        consumerKey: DROPBOX_APP_KEY,
-        consumerSecret: DROPBOX_APP_SECRET,
+        clientID: DROPBOX_APP_KEY,
+        clientSecret: DROPBOX_APP_SECRET,
         callbackURL: "http://127.0.0.1:3000/auth/dropbox/callback"
       },
-      function(token, tokenSecret, profile, done) {
+      function(accessToken, refreshToken, profile, done) {
         User.findOrCreate({ dropboxId: profile.id }, function (err, user) {
           return done(err, user);
         });
