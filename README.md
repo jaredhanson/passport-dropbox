@@ -1,7 +1,7 @@
 # Passport-Dropbox
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
-with [Dropbox](http://www.dropbox.com/) using the OAuth 1.0 API.
+with [Dropbox](http://www.dropbox.com/) using the OAuth 2.0 API.
 
 This module lets you authenticate using Dropbox in your Node.js applications.
 By plugging into Passport, Dropbox authentication can be easily and
