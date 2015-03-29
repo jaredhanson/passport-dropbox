@@ -1,15 +1,10 @@
-var vows = require('vows');
-var assert = require('assert');
-var util = require('util');
+var assert = require('chai').assert;
 var dropbox = require('passport-dropbox');
 
-
-vows.describe('passport-dropbox').addBatch({
-  
-  'module': {
-    'should report a version': function (x) {
-      assert.isString(dropbox.version);
-    },
-  },
-  
-}).export(module);
+describe('passport-dropbox', function() {
+  describe('module', function() {
+    it('should report a version', function() {
+        assert.isString(dropbox.version);
+    });
+  });
+});

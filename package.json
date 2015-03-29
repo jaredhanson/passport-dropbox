@@ -25,10 +25,11 @@
     "pkginfo": "0.2.x"
   },
   "devDependencies": {
-    "vows": "0.6.x"
+    "chai": "^2.2.0",
+    "mocha": "^2.2.1"
   },
   "scripts": {
-    "test": "NODE_PATH=lib node_modules/.bin/vows test/*-test.js"
+    "test": "NODE_PATH=lib node_modules/.bin/mocha"
   },
   "engines": { "node": ">= 0.4.0" }
 }

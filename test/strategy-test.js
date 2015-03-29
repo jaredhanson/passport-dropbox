@@ -1,122 +1,82 @@
-var vows = require('vows');
-var assert = require('assert');
-var util = require('util');
+var assert = require('chai').assert;
 var DropboxStrategy = require('passport-dropbox/strategy');
 
+describe('DropboxStrategy', function() {
+    var strategy = new DropboxStrategy({
+        clientID: 'ABC123',
+        clientSecret: 'secret'
+    }, function() {});
 
-vows.describe('DropboxStrategy').addBatch({
-  
-  'strategy': {
-    topic: function() {
-      return new DropboxStrategy({
-        clientID: 'ABC123',
-        clientSecret: 'secret'
-      },
-      function() {});
-    },
-    
-    'should be named dropbox': function (strategy) {
-      assert.equal(strategy.name, 'dropbox');
-    },
-  },
-  
-  'strategy when loading user profile': {
-    topic: function() {
-      var strategy = new DropboxStrategy({
-        clientID: 'ABC123',
-        clientSecret: 'secret'
-      },
-      function() {});
-      
-      // mock
-      strategy._oauth2.get = function(url, accessToekn, callback) {
+    strategy._oauth2.get = function(url, accessToken, callback) {
+        if (accessToken != 'token') { return callback(new Error('wrong token argument')); }
         var body = '{ \
-            "referral_link": "https://www.dropbox.com/referrals/r1a2n3d4m5s6t7", \
-            "display_name": "John P. User", \
-            "uid": 12345678, \
-            "country": "US", \
-            "quota_info": { \
-                "shared": 253738410565, \
-                "quota": 107374182400000, \
-                "normal": 680031877871 \
-            }, \
-            "email": "john@example.com" \
-        }';
-        
-        callback(null, body, undefined);
-      }
-      
-      return strategy;
-    },
-    
-    'when told to load user profile': {
-      topic: function(strategy) {
-        var self = this;
-        function done(err, profile) {
-          self.callback(err, profile);
-        }
-        
-        process.nextTick(function () {
-          strategy.userProfile('token', 'token-secret', {}, done);
-        });
-      },
-      
-      'should not error' : function(err, req) {
-        assert.isNull(err);
-      },
-      'should load profile' : function(err, profile) {
-        assert.equal(profile.provider, 'dropbox');
-        assert.equal(profile.id, '12345678');
-        assert.equal(profile.displayName, 'John P. User');
-        assert.equal(profile.emails[0].value, 'john@example.com');
-      },
-      'should set raw property' : function(err, profile) {
-        assert.isString(profile._raw);
-      },
-      'should set json property' : function(err, profile) {
-        assert.isObject(profile._json);
-      },
-    },
-  },
-  
-  'strategy when loading user profile and encountering an error': {
-    topic: function() {
-      var strategy = new DropboxStrategy({
-        clientID: 'ABC123',
-        clientSecret: 'secret'
-      },
-      function() {});
-      
-      // mock
-      strategy._oauth2.get = function(url, accessToken, callback) {
-        callback(new Error('something went wrong'));
-      }
-      
-      return strategy;
-    },
-    
-    'when told to load user profile': {
-      topic: function(strategy) {
-        var self = this;
-        function done(err, profile) {
-          self.callback(err, profile);
-        }
-        
-        process.nextTick(function () {
-          strategy.userProfile('token', 'token-secret', {}, done);
-        });
-      },
-      
-      'should error' : function(err, req) {
-        assert.isNotNull(err);
-      },
-      'should wrap error in InternalOAuthError' : function(err, req) {
-        assert.equal(err.constructor.name, 'InternalOAuthError');
-      },
-      'should not load profile' : function(err, profile) {
-        assert.isUndefined(profile);
-      },
-    },
-  },
+          "referral_link": "https://www.dropbox.com/referrals/r1a2n3d4m5s6t7", \
+          "display_name": "John P. User", \
+          "uid": 12345678, \
+          "country": "US", \
+          "quota_info": { \
+          "shared": 253738410565, \
+          "quota": 107374182400000, \
+          "normal": 680031877871 \
+          }, \
+          "email": "john@example.com" \
+          }';
 
-}).export(module);
+        callback(null, body, undefined);
+    };
+
+    describe('strategy', function() {
+        it('should be named dropbox', function() {
+            assert.equal(strategy.name, 'dropbox');
+        });
+    });
+
+    describe('strategy when loading user profile', function() {
+        var profile;
+
+        before(function(done) {
+            strategy.userProfile('token', function(err, p) {
+                if (err) { return done(err); }
+                profile = p;
+                done();
+            });
+        });
+
+        it('should parse profile', function() {
+            assert.equal(profile.provider, 'dropbox');
+            assert.equal(profile.id, '12345678');
+            assert.equal(profile.displayName, 'John P. User');
+            assert.equal(profile.emails[0].value, 'john@example.com');
+        });
+
+        it('should set raw property', function() {
+            assert.isString(profile._raw);
+        });
+
+        it('should set json property', function() {
+            assert.isObject(profile._json);
+        });
+    });
+
+
+    describe('encountering an error', function() {
+        var err, profile;
+
+        before(function(done) {
+            strategy.userProfile('wrong-token', function(e, p) {
+                err = e;
+                profile = p;
+                done();
+            });
+        });
+
+        it('should error', function() {
+            assert.isNotNull(err);
+            assert.equal(err.constructor.name, 'InternalOAuthError');
+        });
+
+        it('should not load profile', function() {
+            assert.isUndefined(profile);
+        });
+    });
+});
