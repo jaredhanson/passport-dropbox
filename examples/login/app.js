@@ -28,11 +28,11 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, a token, tokenSecret, and Dropbox profile), and
 //   invoke a callback with a user object.
 passport.use(new DropboxStrategy({
-    consumerKey: DROPBOX_APP_KEY,
-    consumerSecret: DROPBOX_APP_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/dropbox/callback"
+    clientID: DROPBOX_APP_KEY,
+    clientSecret: DROPBOX_APP_SECRET,
+    callbackURL: "/auth/dropbox/callback"
   },
-  function(token, tokenSecret, profile, done) {
+  function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
