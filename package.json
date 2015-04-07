@@ -21,12 +21,12 @@
   } ],
   "main": "./lib/passport-dropbox",
   "dependencies": {
-    "passport-oauth2": "^1.1.2",
+    "passport-oauth2": "1.x.x",
     "pkginfo": "0.2.x"
   },
   "devDependencies": {
-    "chai": "^2.2.0",
-    "mocha": "^2.2.1"
+    "chai": "2.x.x",
+    "mocha": "2.x.x"
   },
   "scripts": {
     "test": "NODE_PATH=lib node_modules/.bin/mocha"
