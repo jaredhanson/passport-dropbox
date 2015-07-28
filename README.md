@@ -59,7 +59,12 @@ application:
 
 ## Examples
 
-For a complete, working example, refer to the [login example](https://github.com/jaredhanson/passport-dropbox/tree/master/examples/login).
+Developers using the popular [Express](http://expressjs.com/) web framework can
+refer to an [example](https://github.com/passport/express-4.x-twitter-example)
+as a starting point for their own web applications.  The example shows how to
+authenticate users using Twitter.  However, because both Twitter and Dropbox use
+OAuth 1.0, the code is similar.  Simply replace references to Twitter with
+corresponding references to Dropbox.
 
 ## Tests
 
