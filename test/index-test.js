@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var dropbox = require('passport-dropbox');
+var dropbox = require('..');
 
 
 vows.describe('passport-dropbox').addBatch({

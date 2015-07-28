@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var DropboxStrategy = require('passport-dropbox/strategy');
+var DropboxStrategy = require('../lib/strategy');
 
 
 vows.describe('DropboxStrategy').addBatch({
