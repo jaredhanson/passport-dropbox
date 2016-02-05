@@ -1,6 +1,7 @@
-**NOTE:** Dropbox continues to support OAuth 1.0, but OAuth 2.0 is now
-preferred.  Developers are encouraged to use [passport-dropbox-oauth2](https://github.com/florianheinemann/passport-dropbox-oauth2)
-when developing new applications.
+**NOTICE:** Dropbox supports both OAuth 1.0 and OAuth 2.0. This strategy
+implements support for OAuth 1.0.  If you are building a new application, OAuth
+2.0 is preferred.  In that case, [passport-dropbox-oauth2](https://github.com/florianheinemann/passport-dropbox-oauth2)
+can be used as a strategy.
 
 
 # passport-dropbox
