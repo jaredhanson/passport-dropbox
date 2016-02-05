@@ -3,7 +3,13 @@ preferred.  Developers are encouraged to use [passport-dropbox-oauth2](https://g
 when developing new applications.
 
 
-# Passport-Dropbox
+# passport-dropbox
+
+[![Build](https://img.shields.io/travis/jaredhanson/passport-dropbox.svg)](https://travis-ci.org/jaredhanson/passport-dropbox)
+[![Coverage](https://img.shields.io/coveralls/jaredhanson/passport-dropbox.svg)](https://coveralls.io/r/jaredhanson/passport-dropbox)
+[![Quality](https://img.shields.io/codeclimate/github/jaredhanson/passport-dropbox.svg?label=quality)](https://codeclimate.com/github/jaredhanson/passport-dropbox)
+[![Dependencies](https://img.shields.io/david/jaredhanson/passport-dropbox.svg)](https://david-dm.org/jaredhanson/passport-dropbox)
+
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
 with [Dropbox](http://www.dropbox.com/) using the OAuth 1.0 API.
