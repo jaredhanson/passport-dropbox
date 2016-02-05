@@ -1,6 +1,6 @@
 {
   "name": "passport-dropbox",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Dropbox authentication strategy for Passport.",
   "keywords": [
     "passport",
